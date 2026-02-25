@@ -1,0 +1,8 @@
+GET /api/transactions -> Lấy danh sách các giao dịch (hỗ trợ thêm query filter như ?status=PENDING).
+PUT /api/transactions/<int:transaction_id>/approve -> Duyệt phiếu yêu cầu và thực thi thay đổi vào Database.
+PUT /api/transactions/<int:transaction_id>/reject -> Từ chối phiếu yêu cầu.
+GET /api/balance-system -> Xem tổng số dư ví và tổng tiền gốc tiết kiệm của toàn hệ thống.
+GET /api/users -> Lấy danh sách thông tin khách hàng (role CUSTOMER).
+GET /api/savings-accounts -> Lấy danh sách toàn bộ sổ tiết kiệm.
+GET /api/savings-accounts/<int:account_id> -> Xem chi tiết một sổ tiết kiệm cụ thể.
+
