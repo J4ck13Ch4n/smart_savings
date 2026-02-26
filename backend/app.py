@@ -1,7 +1,8 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from auth import auth_bp
+from common.auth import auth_bp
 from transactions import transactions_bp
+from admin.admin import admin_bp
 
 app = Flask(__name__)
 CORS(app)
@@ -11,6 +12,7 @@ app.config['SECRET_KEY'] = 'mot_chuoi_bi_mat_rat_dai_va_kho_doan'
 # Đăng ký các Blueprint
 app.register_blueprint(auth_bp)
 app.register_blueprint(transactions_bp)
+app.register_blueprint(admin_bp)
 
 
 @app.route('/api/ping', methods=['GET'])

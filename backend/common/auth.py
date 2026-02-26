@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
-from db import db_cursor, db_conn
+from common.db import db_cursor, db_conn
 import jwt
 import datetime
 

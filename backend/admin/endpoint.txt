@@ -1,0 +1,27 @@
+ADMIN ENDPOINTS
+===============
+
+--- Dashboard ---
+GET  /api/admin/dashboard                            -> Thống kê tổng quan (số user, staff, sổ active, tổng tiền gửi, giao dịch chờ duyệt...)
+
+--- Quản lý Người dùng ---
+GET  /api/admin/users                                -> Danh sách tất cả người dùng (hỗ trợ ?role=STAFF&status=ACTIVE&search=keyword)
+GET  /api/admin/users/<int:user_id>                  -> Chi tiết người dùng (kèm danh sách sổ tiết kiệm)
+POST /api/admin/users                                -> Tạo tài khoản mới (body: email, password, full_name, identity_card, role)
+PUT  /api/admin/users/<int:user_id>/role             -> Thay đổi role (body: { "role": "STAFF" })
+PUT  /api/admin/users/<int:user_id>/status           -> Khóa/Mở khóa tài khoản (body: { "status": "LOCKED" })
+
+--- Quản lý Gói Tiết kiệm (QĐ6) ---
+GET  /api/admin/savings-products                     -> Danh sách tất cả gói tiết kiệm (kể cả đã tắt)
+POST /api/admin/savings-products                     -> Thêm gói mới (body: name, term_months, interest_rate, min_days_hold, description)
+PUT  /api/admin/savings-products/<int:product_id>    -> Cập nhật gói (body: các field cần sửa)
+PUT  /api/admin/savings-products/<int:product_id>/toggle -> Bật/Tắt gói (is_active toggle)
+
+--- Cấu hình Tham số Hệ thống (QĐ6) ---
+GET    /api/admin/configs                            -> Danh sách tất cả tham số hệ thống
+POST   /api/admin/configs                            -> Thêm tham số mới (body: config_key, config_value, description)
+PUT    /api/admin/configs/<string:config_key>         -> Cập nhật giá trị tham số (body: config_value, description)
+DELETE /api/admin/configs/<string:config_key>         -> Xóa tham số
+
+LƯU Ý: Tất cả endpoint đều yêu cầu JWT token với role ADMIN.
+Header: Authorization: Bearer <token>
